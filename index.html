@@ -40,6 +40,11 @@
             justify-content: space-between;
             filter: drop-shadow(0 0 15px #fff200);
         }
+        .selected {
+            background-color: #fff20080;
+            border: 2px solid #fff200;
+            border-radius: 8px;
+        }
         #welcome {
             z-index: 9;
             border: 3px solid #fff200;
@@ -64,6 +69,20 @@
             height: 40px;
             object-fit: contain;
             margin-left: 5px;
+            cursor: pointer;
+        }
+        #manifesto-app {
+            margin: 2;
+            padding: 0px;
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+        }
+        #manifesto-app img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-left: 0px;
             cursor: pointer;
         }
         #timeElement {
@@ -103,6 +122,13 @@
         <a href="https://OUROS.com/home">OUROS</a>
         <p></p>
         <a href="https://open.spotify.com/track/0JRoo5kkeboyTWVdMEU3pw">Listen To OUR Song</a>
+    </div>
+
+    <div id="manifesto" style="display: none;">
+        <div id="manifestoheader">
+            <button id="manifestoclose">X</button>
+        </div>
+        <p>test</p>
     </div>
 
     <div class="topbar">

@@ -10,11 +10,19 @@ function updateTime() {
 updateTime();
 setInterval(updateTime, 1000);
 
+var selectedIcon = undefined
+
 var welcomeScreen = document.querySelector("#welcome")
 
 var welcomeScreenClose = document.querySelector("#welcomeclose")
 
 var welcomeScreenOpen = document.querySelector("#welcomeopen")
+
+var manifestoIcon = document.querySelector("#manifesto-app")
+
+var manifestoWindow = document.querySelector("#manifesto")
+
+var manifestoClose = document.querySelector("#manifestoclose")
 
 welcomeScreenClose.addEventListener("click", function() {
   closeWindow(welcomeScreen);
@@ -24,6 +32,23 @@ welcomeScreenOpen.addEventListener("click", function() {
   openWindow(welcomeScreen);
 });
 
+manifestoIcon.addEventListener("click", function() {
+  handleIconTap(manifestoIcon, manifestoWindow)
+});
+
+manifestoClose.addEventListener("click", function() {
+  closeWindow(manifestoWindow)
+})
+
+function selectIcon(element) {
+  element.classList.add("selected");
+  selectedIcon = element
+} 
+
+function deselectIcon(element) {
+  element.classList.remove("selected");
+  selectedIcon = undefined
+} 
 
 function closeWindow(element) {
   element.style.display = "none"
@@ -33,8 +58,19 @@ function openWindow(element) {
   element.style.display = "block"
 }
 
+function handleIconTap(icon, appWindow) {
+  if (icon.classList.contains("selected")) {
+    deselectIcon(icon)
+    openWindow(appWindow)
+  }
+  else {
+    selectIcon(icon)
+  }
+}
+
 // Make the DIV element draggable:
 dragElement(document.getElementById("welcome"));
+dragElement(document.getElementById("manifesto"));
 
 // Step 1: Define a function called `dragElement` that makes an HTML element draggable.
 function dragElement(element) {
