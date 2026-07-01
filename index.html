@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <style>
+        body {
+            background-image: url(./pictures/OUROS-DESKTOP-BACKGROUND.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            margin: 0;
+        }
+        #welcomeheader {
+            padding: 5px;
+            cursor: move;
+            z-index: 10;
+            background-color: #ff000080;
+            border: 3px solid #fff200;
+            border-radius: 2px;
+            backdrop-filter: blur(10px);
+            color: #fff200;
+
+            display: flex;
+            align-items: center;
+        }
+        #welcomeheader img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            margin-left: auto;
+            cursor: pointer;
+        }
+        .topbar {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            backdrop-filter: blur(10px);
+            background-color: #fff200;
+            color: #cc0000;
+            justify-content: space-between;
+            filter: drop-shadow(0 0 15px #fff200);
+        }
+        #welcome {
+            z-index: 9;
+            border: 3px solid #fff200;
+            border-radius: 5px;
+            width: 320px;
+            padding: 16px;
+            color: #fff200;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #cc0000;
+        }
+        #welcomeopen {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        #welcomeopen img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        #timeElement {
+            margin: 0 0 0 7px;
+            font-weight: bold;
+            line-height: 18px;
+            font-size: 17px;
+        }
+        h1 {
+            font-family: Impact;
+            font-size: 30px;
+            margin: 0 0 5px 0;
+        }
+        h2 {
+            font-size: 20px;
+            margin: 0 0 5px 0;
+        }
+        p {
+            margin: 0 0 3px 0;
+        }
+        a {
+            color: #fff200;
+            display: block;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="welcome">
+        <div id="welcomeheader"><img id="welcomeclose" src="./pictures\OUROS-HAMMER-AND-SICKLE.png" alt="OUROS Icon"></div>
+        <h1>Welcome To OUROS</h1>
+        <h2> Introduction </h2>
+        <p> This is OUROS. </p>
+        <img src="./pictures/OUROS-ONBOARDING-BANNER.png" alt="OUROS logo">
+        <p></p>
+        <a href="https://OUROS.com/home">OUROS</a>
+        <p></p>
+        <a href="https://open.spotify.com/track/0JRoo5kkeboyTWVdMEU3pw">Listen To OUR Song</a>
+    </div>
+
+    <div class="topbar">
+        <p id="timeElement">
+            Time
+        </p>
+        <p style="margin-right: 40px; font-family: Impact; font-size: 30px;">
+            OUROS
+        </p>
+        <p id="welcomeopen"><img src="pictures\OUROS-WELCOME-APP.png"></p>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+
+</html>
