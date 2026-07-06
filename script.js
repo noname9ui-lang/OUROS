@@ -10,6 +10,8 @@ function updateTime() {
 updateTime();
 setInterval(updateTime, 1000);
 
+var biggestIndex = 1;
+
 var selectedIcon = undefined
 
 var welcomeScreen = document.querySelector("#welcome")
@@ -40,6 +42,23 @@ manifestoClose.addEventListener("click", function() {
   closeWindow(manifestoWindow)
 })
 
+function addWindowTapHandling(element) {
+  element.addEventListener("mousedown", () =>
+    handleWindowTap(element)
+  )
+}
+
+addWindowTapHandling(welcomeScreen) 
+addWindowTapHandling(manifestoWindow) 
+
+function handleWindowTap(element){
+  biggestIndex++;
+  element.style.zIndex = biggestIndex
+  elementheader = element.id + "header";
+  elementheader.style.zIndex = biggestIndex+1;
+  deselectIcon(selectedIcon)
+}
+
 function selectIcon(element) {
   element.classList.add("selected");
   selectedIcon = element
@@ -56,6 +75,10 @@ function closeWindow(element) {
 
 function openWindow(element) {
   element.style.display = "block"
+  biggestIndex++;
+  element.style.zIndex = biggestIndex;
+  elementheader = element.id + "header";
+  elementheader.style.zIndex = biggestIndex+1;
 }
 
 function handleIconTap(icon, appWindow) {
