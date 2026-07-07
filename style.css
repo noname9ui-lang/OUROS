@@ -54,6 +54,40 @@ body {
     display: none;
     padding-bottom: 60px;
 }
+#communist-notes {
+    border: 3px solid #fff200;
+    border-radius: 5px;
+    width: 640px;
+    height: 600px;
+    padding: 16px;
+    color: #fff200;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #cc0000;
+    display: none;
+    padding-bottom: 60px;
+}
+#communist-notesheader {
+    padding: 5px;
+    cursor: move;
+    background-color: #ff000080;
+    border: 3px solid #fff200;
+    border-radius: 2px;
+    backdrop-filter: blur(10px);
+    color: #fff200;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+}
+#communist-notesheader img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    margin-left: auto;
+    cursor: pointer;
+}
 #manifestoheader {
     padding: 5px;
     cursor: move;
@@ -97,6 +131,21 @@ body {
     height: 40px;
     object-fit: contain;
     margin-left: 5px;
+    cursor: pointer;
+}
+#communist-notes-app {
+    margin: 2;
+    padding: 0px;
+    margin-left: 11px;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+}
+#communist-notes-app img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-left: 0px;
     cursor: pointer;
 }
 #manifesto-app {
