@@ -54,7 +54,21 @@ body {
     display: none;
     padding-bottom: 60px;
 }
-#communist-notes {
+#communistNotesNewNote {
+    font-family: Impact; 
+    font-size: 20px; 
+    margin-left: 10px; 
+    background-color: rgba(255, 242, 0, 0.9); 
+    color: #cc0000;
+    width: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    font-weight: bold;
+}
+#communistNotes {
     border: 3px solid #fff200;
     border-radius: 5px;
     width: 640px;
@@ -69,7 +83,7 @@ body {
     display: none;
     padding-bottom: 60px;
 }
-#communist-notesheader {
+#communistNotesheader {
     padding: 5px;
     cursor: move;
     background-color: #ff000080;
@@ -81,7 +95,7 @@ body {
     display: flex;
     align-items: center;
 }
-#communist-notesheader img {
+#communistNotesheader img {
     width: 24px;
     height: 24px;
     object-fit: contain;
@@ -133,7 +147,7 @@ body {
     margin-left: 5px;
     cursor: pointer;
 }
-#communist-notes-app {
+#communistNotes-app {
     margin: 2;
     padding: 0px;
     margin-left: 11px;
@@ -141,7 +155,7 @@ body {
     align-items: center;
     width: fit-content;
 }
-#communist-notes-app img {
+#communistNotes-app img {
     width: 40px;
     height: 40px;
     object-fit: contain;

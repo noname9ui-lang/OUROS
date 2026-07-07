@@ -26,11 +26,11 @@ var manifestoWindow = document.querySelector("#manifesto")
 
 var manifestoClose = document.querySelector("#manifestoclose")
 
-var communistNotesIcon = document.querySelector("#communist-notes-app")
+var communistNotesIcon = document.querySelector("#communistNotes-app")
 
-var communistNotesWindow = document.querySelector("#communist-notes")
+var communistNotesWindow = document.querySelector("#communistNotes")
 
-var communistNotesClose = document.querySelector("#communist-notesclose")
+var communistNotesClose = document.querySelector("#communistNotesclose")
 
 welcomeScreenClose.addEventListener("click", function() {
   closeWindow(welcomeScreen);
@@ -43,18 +43,27 @@ welcomeScreenOpen.addEventListener("click", function() {
 communistNotesIcon.addEventListener("click", function() {
   handleIconTap(communistNotesIcon, communistNotesWindow)
 });
-
+/*
 communistNotesClose.addEventListener("click", function() {
   closeWindow(communistNotesWindow)
 })
-
+*/
 manifestoIcon.addEventListener("click", function() {
   handleIconTap(manifestoIcon, manifestoWindow)
 });
-
+/*
 manifestoClose.addEventListener("click", function() {
   closeWindow(manifestoWindow)
 })
+*/
+function makeClosable(elementName) {
+  var elementClose = document.querySelector("#" + elementName + "close");
+  var elementWindow = document.querySelector("#" + elementName);
+
+  elementClose.addEventListener("click", function() {
+    closeWindow(elementWindow);
+  });
+}
 
 function addWindowTapHandling(element) {
   element.addEventListener("mousedown", () =>
@@ -62,9 +71,19 @@ function addWindowTapHandling(element) {
   )
 }
 
+function initializeWindow(elementName) {
+  var screen = document.querySelector("#" + elementName)
+  addWindowTapHandling(screen)
+  makeClosable(elementName)
+  dragElement(screen)
+}
+
+initializeWindow("manifesto")
+initializeWindow("communistNotes")
+
 addWindowTapHandling(welcomeScreen) 
-addWindowTapHandling(manifestoWindow) 
-addWindowTapHandling(communistNotesWindow)
+//addWindowTapHandling(manifestoWindow) 
+//addWindowTapHandling(communistNotesWindow)
 
 function handleWindowTap(element){
   biggestIndex++;
@@ -107,8 +126,8 @@ function handleIconTap(icon, appWindow) {
 }
 
 dragElement(document.getElementById("welcome"));
-dragElement(document.getElementById("manifesto"));
-dragElement(document.getElementById("communist-notes"));
+/*dragElement(document.getElementById("manifesto"));
+dragElement(document.getElementById("communistNotes"));*/
 
 function dragElement(element) {
   var initialX = 0;
