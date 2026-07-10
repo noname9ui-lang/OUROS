@@ -12,7 +12,7 @@ var content = [
     title: "Welcome",
     date: "2026-07-10",
     content: `
-    <p class="noteTitle" contenteditable="True" style="font-weight:bold; font-size: 25px;">Welcome</p>
+    <p class="noteTitle" contenteditable="True" style="font-weight:bold; font-size: 25px; width: 600px">Welcome</p>
     <p contenteditable="True">
     <span contenteditable="True">These are <b>OUR</b> notes.</span>
     </br>
@@ -209,6 +209,17 @@ function deselectIcon(element) {
 
 function closeWindow(element) {
   element.style.display = "none"
+}
+
+function deleteNote(index) {
+  content.splice(index,1)
+  clearAllNotes();
+
+  for (let i = 0; i < content.length; i++) {
+    addNotesToTopBar(i);
+  }
+  currentNoteIndex = undefined;
+  setNotesContent(0);
 }
 
 function openWindow(element) {
