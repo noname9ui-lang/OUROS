@@ -7,8 +7,27 @@ function updateTime() {
   document.querySelector("#timeElement").innerHTML = time + "<br>" + date;
 }
 
+var content = [
+  {
+    title: "Welcome",
+    date: "2026-07-10",
+    content: `
+    <p class="noteTitle" contenteditable="True" style="font-weight:bold; font-size: 25px;">Welcome</p>
+    <p contenteditable="True">
+    <span contenteditable="True">These are <b>OUR</b> notes.</span>
+    </br>
+    </br>
+    </br>
+    </br>
+    </p>
+    `
+  },
+]
+
 updateTime();
 setInterval(updateTime, 1000);
+
+var currentNoteIndex = undefined;
 
 var biggestIndex = 1;
 
@@ -32,6 +51,8 @@ var communistNotesWindow = document.querySelector("#communistNotes")
 
 var communistNotesClose = document.querySelector("#communistNotesclose")
 
+var communistNotesNewNote = document.querySelector("#communistNotesNewNote")
+
 welcomeScreenClose.addEventListener("click", function() {
   closeWindow(welcomeScreen);
 });
@@ -43,19 +64,15 @@ welcomeScreenOpen.addEventListener("click", function() {
 communistNotesIcon.addEventListener("click", function() {
   handleIconTap(communistNotesIcon, communistNotesWindow)
 });
-/*
-communistNotesClose.addEventListener("click", function() {
-  closeWindow(communistNotesWindow)
-})
-*/
+
+communistNotesNewNote.addEventListener("click", function() {
+  newNote()
+});
+
 manifestoIcon.addEventListener("click", function() {
   handleIconTap(manifestoIcon, manifestoWindow)
 });
-/*
-manifestoClose.addEventListener("click", function() {
-  closeWindow(manifestoWindow)
-})
-*/
+
 function makeClosable(elementName) {
   var elementClose = document.querySelector("#" + elementName + "close");
   var elementWindow = document.querySelector("#" + elementName);
@@ -65,10 +82,97 @@ function makeClosable(elementName) {
   });
 }
 
+function newNote() {
+  content.unshift({
+    title: "Title",
+    date: new Date().toLocaleDateString(),
+    content: `
+    <p class="noteTitle" contenteditable="True" style="font-weight:bold; font-size: 25px;">Title</p>
+    <p contenteditable="True">
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </p>
+    `
+  })
+  clearAllNotes()
+  for (let i = 0; i < content.length; i++) {
+    addNotesToTopBar(i)
+  }
+  currentNoteIndex = undefined;
+  setNotesContent(0);
+}
+
 function addWindowTapHandling(element) {
   element.addEventListener("mousedown", () =>
     handleWindowTap(element)
   )
+}
+
+function saveCurrentNote() {
+  var notesContent = document.querySelector("#communistNotesWelcomeNote");
+
+  if (currentNoteIndex !== undefined) {
+    content[currentNoteIndex].content = notesContent.innerHTML;
+
+    var title = notesContent.querySelector(".noteTitle");
+    if (title) {
+      content[currentNoteIndex].title = title.textContent;
+    }
+  }
+
+  clearAllNotes();
+
+  for (let i = 0; i < content.length; i++) {
+    addNotesToTopBar(i);
+  }
+}
+
+function setNotesContent(index) {
+
+  if (currentNoteIndex !== undefined) {
+    saveCurrentNote();
+  }
+
+  var notesContent = document.querySelector("#communistNotesWelcomeNote");
+
+  notesContent.innerHTML = content[index].content;
+
+  currentNoteIndex = index;
+}
+
+setNotesContent(0)
+
+function addNotesToTopBar(index) {
+  var NotesTopBar = document.querySelector("#notes");
+  var note = content[index];
+  var newDiv = document.createElement("div");
+
+  newDiv.innerHTML = `
+    <p style="margin: 0px;">
+      ${note.title}
+    </p>
+    <p style="font-size: 12px; margin: 0px;">
+      ${note.date}
+    </p>
+  `;
+  newDiv.addEventListener("click", function() {
+    setNotesContent(index);
+  });
+  NotesTopBar.appendChild(newDiv);
+}
+
+for (let i = 0; i < content.length; i++) {
+  addNotesToTopBar(i)
+}
+
+function clearAllNotes() {
+  var NotesTopBar = document.querySelector("#notes");
+  while (NotesTopBar.firstChild) {
+    NotesTopBar.removeChild(NotesTopBar.lastChild);
+  }
 }
 
 function initializeWindow(elementName) {
@@ -134,6 +238,8 @@ function dragElement(element) {
   var initialY = 0;
   var currentX = 0;
   var currentY = 0;
+  var maxX = 100
+  var maxY = 100
 
   if (document.getElementById(element.id + "header")) {
     document.getElementById(element.id + "header").onmousedown = startDragging;
@@ -159,6 +265,8 @@ function dragElement(element) {
     initialY = e.clientY;
     element.style.top = (element.offsetTop - currentY) + "px";
     element.style.left = (element.offsetLeft - currentX) + "px";
+    console.log("currentX: "  + "currentY: ")
+    console.log()
   }
 
   function stopDragging() {
